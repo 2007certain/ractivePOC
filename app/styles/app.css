@@ -1,0 +1,19 @@
+body{
+	padding: 10px;
+}
+.btn-click{
+	margin-right: 10px;
+}
+.progress{
+	position: relative;
+}
+.progress-val{
+	position: absolute;
+	width: 100%;
+	top: 0;
+	bottom: 0;
+	text-align: center;
+}
+.mb-10{
+	margin-bottom: 10px;
+}

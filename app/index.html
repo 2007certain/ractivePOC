@@ -1,0 +1,118 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>assignment</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css styles/app.css -->
+    <link rel="stylesheet" href="styles/app.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- endbuild -->
+    <!-- build:js(.) scripts/modernizr.js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+    
+  </head>
+  <body>
+    <!--[if lt IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser.
+      Please <a href="http://browsehappy.com/">upgrade your browser</a> to
+      improve your experience.</p>
+    <![endif]-->
+    
+    <div class="container">
+      <div id="app"></div>  
+    </div>
+    
+    <script id="template" type="text/ractive">
+      {{#if !barValue}}
+      {{loading}}
+      {{/if}}
+      {{#each barValue:i}}
+        <div class="progress">
+          <p class="progress-val">
+            {{#if barValue[i] < 0}}
+                0 %
+                {{else}}
+                {{parseInt(100 * barValue[i] / obj.limit)}} %
+              {{/if}}
+          </p>
+            <div class="
+              {{#if barValue[i] > obj.limit}}
+                progress-bar progress-bar-danger
+                {{else}}
+                progress-bar
+              {{/if}}
+              "
+              role="progressbar" 
+              aria-valuenow="
+            {{#if barValue[i] < 0}}
+                0
+                {{else}}
+                {{barValue[i]}}
+              {{/if}}
+              "
+              aria-valuemin="0" 
+              aria-valuemax="{{obj.limit}}" 
+              style="
+                {{#if barValue[i] < 0}}
+                  width: 0%
+                  {{else}}
+                  width:{{100 * barValue[i] / obj.limit}}%
+                {{/if}}
+              ">
+            </div>
+        </div>
+      {{/each}}
+      <div class="row">
+        <div class="col-md-2 col-xs-12 mb-10">
+          {{#if obj.bars}}
+          <select class="form-control" value="{{progressBarSelect}}" id="progressBarSelect">
+            {{#each obj.bars:i}}
+            <option value="{{i}}"># Progress {{i+1}}</option>
+            {{/each}}
+          </select>
+          {{/if}}   
+        </div>
+        <div class="col-md-10 col-xs-12">
+          {{#each obj.buttons:i}}
+            {{#if obj.buttons[i] > 0}}
+            <button on-click="addVal(obj.buttons[i])" class="btn btn-primary btn-click">+{{obj.buttons[i]}}</button>
+            {{else}}
+              <button on-click="addVal(obj.buttons[i])" class="btn btn-primary btn-click">{{obj.buttons[i]}}</button>
+            {{/if}}
+          {{/each}}
+        </div>
+      </div>
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jQuery/dist/jquery.js"></script>
+    <!-- <script src="bower_components/ractive/ractive.js"></script> -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js scripts/app.js -->
+    <script src="scripts/app.js"></script>
+
+  <script src="scripts/main.js"></script>
+    <!-- generator:ractive script -->
+    <!-- endbuild -->
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <!-- <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+    </script> -->
+  </body>
+</html>

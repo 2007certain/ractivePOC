@@ -1,0 +1,7 @@
+{
+  "generator-ractive": {
+    "loadMethod": "scriptTags",
+    "nameSpace": "Assignment",
+    "testFramework": "mocha"
+  }
+}

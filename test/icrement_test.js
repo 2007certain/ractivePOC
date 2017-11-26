@@ -1,0 +1,1 @@
+/*global describe, beforeEach, it*/
